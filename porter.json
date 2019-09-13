@@ -1,0 +1,39 @@
+﻿{
+  "success": true,
+  "errors": null,
+  "data": [
+    {
+      "avatar": "https://cdn3.movieweb.com/i/article/pzi0V24b4UMAivfDW3oNGEDLUO46CT/798:50/Avengers-Endgame-Rerelease-Fan-Backlash-Hulk-Deleted-Scene.jpg",
+      "name": "Hulk",
+      "uid": "hxmDLmU79DS8ihkHuMNo6HU3XcU22",
+      "ratingSpeed": 2,
+      "numberOfOrders": 3,
+      "numberOfOrdersComplete": 2,
+      "ratingPunctuality": 5,
+      "workSchedule": {
+        "endTime": "17:00",
+        "startTime": "12:00",
+        "dayOfWeek": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "services": [
+        {
+          "id": "Qe5UrXeQBMZB3V1wJ6h3f",
+          "number": 10,
+          "label": "Ціна за час"
+        },
+        {
+          "id": "Qe5UrXeQBMZB3V1w4J7hf",
+          "number": 5,
+          "label": "Ціна за км"
+        }
+      ]
+    }
+  ]
+}
