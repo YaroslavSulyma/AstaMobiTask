@@ -1,17 +1,20 @@
 package com.example.astamobitask.recyclerView
 
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.RatingBar
-import android.widget.TextView
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.astamobitask.R
+import com.squareup.picasso.Picasso
 
 class CarriersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val name = itemView.findViewById(R.id.text_view_name) as TextView
-    private var punctuality = itemView.findViewById(R.id.text_view_punctuality) as TextView
-    private var accuracy = itemView.findViewById(R.id.text_view_accuracy) as TextView
+    private val avatar = itemView.findViewById(R.id.image_view_avatar) as ImageView
+    private val ratingPunctuality =
+            itemView.findViewById(R.id.text_view_rating_punctuality) as TextView
+    private val ratingSpeed = itemView.findViewById(R.id.text_view_rating_speed) as TextView
     private val completedOrders = itemView.findViewById(R.id.text_view_completed_orders) as TextView
     private val workSchedule = itemView.findViewById(R.id.text_view_work_schedule) as TextView
     private val workingDays = itemView.findViewById(R.id.text_view_working_days) as TextView
@@ -20,7 +23,51 @@ class CarriersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val buttonOrder = itemView.findViewById(R.id.button_order) as Button
     private val priceForTime = itemView.findViewById(R.id.text_view_price_for_time) as TextView
     private val pricePerTime = itemView.findViewById(R.id.text_view_price_per_hour) as TextView
-    private val priceForKilometer = itemView.findViewById(R.id.text_view_price_for_kilometer) as TextView
-    private val pricePerKilometer = itemView.findViewById(R.id.text_view_price_per_kilometer) as TextView
+    private val priceForKilometer =
+            itemView.findViewById(R.id.text_view_price_for_kilometer) as TextView
+    private val pricePerKilometer =
+            itemView.findViewById(R.id.text_view_price_per_kilometer) as TextView
+    private val expand = itemView.findViewById(R.id.clickable_constraint_layout) as ConstraintLayout
+    private val priceLayout = itemView.findViewById(R.id.price_layout) as LinearLayout
 
+    private var expanded: Boolean = false
+
+    fun onBind(item: IData, status: IWorker) {
+        if (status.getSuccess()) {
+            name.text = item.getName()
+            Picasso.get().load(item.getAvatar()).into(avatar)
+            ratingPunctuality.text = item.getRatingPunctuality().toString()
+            ratingSpeed.text = item.getRatingSpeed().toString()
+            punctualityRating.rating = item.getRatingPunctuality().toFloat()
+            accuracyRating.rating = item.getRatingSpeed().toFloat()
+            completedOrders.text = item.getOrders()
+            workSchedule.text = item.getWorkSchedule().getTime()
+            val week: MutableList<String> = arrayListOf()
+            for (i in item.getWorkSchedule().getDayOfWeek().indices) {
+                when (i) {
+                    0 -> week.add("Пн")
+                    1 -> week.add("ВТ")
+                    2 -> week.add("Ср")
+                    3 -> week.add("Чт")
+                    4 -> week.add("Пт")
+                    5 -> week.add("Сб")
+                    6 -> week.add("Нд")
+                }
+            }
+            workingDays.text = week.toString()
+            expand.setOnClickListener {
+                if (!expanded) {
+                    priceLayout.visibility = View.VISIBLE
+                    expanded = true
+                } else {
+                    priceLayout.visibility = View.GONE
+                    expanded = false
+                }
+            }
+            priceForTime.text = item.getServices()[0].getLabel()
+            pricePerTime.text = item.getServices()[0].getNumber().toString()
+            priceForKilometer.text = item.getServices()[1].getLabel()
+            pricePerKilometer.text = item.getServices()[1].getNumber().toString()
+        } else Log.e("Errors", "${status.getErrors()}")
+    }
 }

@@ -1,40 +1,147 @@
 package com.example.astamobitask.recyclerView
 
-sealed class ModelCarriers {
 
-    data class Base (
-        val worker : List<Worker>,
-        val data : List<Data>
-    )
+data class Worker(
+        val _success: Boolean,
+        val _errors: String?,
+        val _data: List<Data>
+) : IWorker {
+    override fun getSuccess(): Boolean {
+        return _success
+    }
 
-    data class Worker (
-        val success : Boolean,
-        val errors : String,
-        val data : List<String>
-    )
+    override fun getErrors(): String? {
+        return _errors
+    }
 
-    data class Data(
-        val avatar: String,
-        val name: String,
-        val uid: String,
-        val ratingSpeed: Double,
-        val numberOfOrders: Int,
-        val numberOfOrdersComplete: Int,
-        val ratingPunctuality: Double,
-        val workSchedule: WorkSchedule,
-        val services: List<Services>
-    )
+    override fun getData(): List<Data> {
+        return _data
+    }
+}
 
-    data class WorkSchedule (
-        val endTime : String,
-        val startTime : String,
-        val dayOfWeek : List<Int>
-    )
+data class Data(
+        val _avatar: String,
+        val _name: String,
+        val _uid: String,
+        val _ratingSpeed: Double,
+        val _numberOfOrders: Int,
+        val _numberOfOrdersComplete: Int,
+        val _ratingPunctuality: Double,
+        val _workSchedule: WorkSchedule,
+        val _services: List<Services>
+) : IData {
+    override fun getOrders(orders: Int, completedOrders: Int): String {
+        return "$orders з $completedOrders"
+    }
 
-    data class Services (
-        val id : String,
-        val number : Int,
-        val label : String
-    )
+    override fun getAvatar(): String {
+        return _avatar
+    }
+
+    override fun getName(): String {
+        return _name
+    }
+
+    override fun getUid(): String {
+        return _uid
+    }
+
+    override fun getRatingSpeed(): Double {
+        return _ratingSpeed
+    }
+
+    override fun getNumberOfOrders(): Int {
+        return _numberOfOrders
+    }
+
+    override fun getNumberOfOrdersComplete(): Int {
+        return _numberOfOrdersComplete
+    }
+
+    override fun getRatingPunctuality(): Double {
+        return _ratingPunctuality
+    }
+
+    override fun getWorkSchedule(): WorkSchedule {
+        return _workSchedule
+    }
+
+    override fun getServices(): List<Services> {
+        return _services
+    }
+}
+
+data class WorkSchedule(
+        val _endTime: String,
+        val _startTime: String,
+        val _dayOfWeek: List<Int>
+) : IWorkSchedule {
+    override fun getTime(startTime: String, endTime: String): String {
+        return "$startTime - $endTime"
+    }
+
+    override fun getEndTime(): String {
+        return _endTime
+    }
+
+    override fun getStartTime(): String {
+        return _startTime
+    }
+
+    override fun getDayOfWeek(): List<Int> {
+        return _dayOfWeek
+    }
 
 }
+
+data class Services(
+        val _id: String,
+        val _number: Int,
+        val _label: String
+) : IServices {
+    override fun getId(): String {
+        return _id
+    }
+
+    override fun getNumber(): Int {
+        return _number
+    }
+
+    override fun getLabel(): String {
+        return _label
+    }
+}
+
+interface IWorker {
+    fun getSuccess(): Boolean
+    fun getErrors(): String?
+    fun getData(): List<Data>
+
+}
+
+interface IData {
+    fun getAvatar(): String
+    fun getName(): String
+    fun getUid(): String
+    fun getRatingSpeed(): Double
+    fun getNumberOfOrders(): Int
+    fun getNumberOfOrdersComplete(): Int
+    fun getRatingPunctuality(): Double
+    fun getWorkSchedule(): WorkSchedule
+    fun getServices(): List<Services>
+    fun getOrders(orders: Int = getNumberOfOrders(), completedOrders: Int = getNumberOfOrdersComplete()): String
+}
+
+interface IWorkSchedule {
+    fun getEndTime(): String
+    fun getStartTime(): String
+    fun getDayOfWeek(): List<Int>
+    fun getTime(startTime: String = getStartTime(), endTime: String = getEndTime()): String
+}
+
+interface IServices {
+    fun getId(): String
+    fun getNumber(): Int
+    fun getLabel(): String
+}
+

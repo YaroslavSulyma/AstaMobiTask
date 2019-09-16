@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,15 +22,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="Виконано замовлень" />
 
         <TextView
             android:id="@+id/text_view_completed_orders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="1 з 1"
+            android:layout_marginStart="5dp"
+            tools:text="1 з 1"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -51,15 +52,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="Графік роботи" />
 
         <TextView
             android:id="@+id/text_view_work_schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="08:00 - 21:00"
+            android:layout_marginStart="5dp"
+            tools:text="08:00 - 21:00"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -81,15 +82,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="Робочі дні" />
 
         <TextView
             android:id="@+id/text_view_working_days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="ПН ВТ СР ЧТ"
+            android:layout_marginStart="5dp"
+            tools:text="ПН ВТ СР ЧТ"
             android:textStyle="bold" />
 
     </LinearLayout>
