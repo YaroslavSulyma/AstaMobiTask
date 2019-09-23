@@ -33,8 +33,6 @@ class CarriersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var expanded: Boolean = false
 
     fun onBind(item: Data) {
-        /*if (item.getSuccess()) {
-            for(i in item.getData().indices){*/
         name.text = item.getName()
         Picasso.get().load(item.getAvatar()).into(avatar)
         ratingPunctuality.text = item.getRatingPunctuality().toString()
@@ -71,8 +69,5 @@ class CarriersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         pricePerTime.text = item.getServices()[0].getNumber().toString()
         priceForKilometer.text = item.getServices()[1].getLabel()
         pricePerKilometer.text = item.getServices()[1].getNumber().toString()
-        /*}
-
-    } else Log.e("Errors", "${item.getErrors()}")*/
     }
 }

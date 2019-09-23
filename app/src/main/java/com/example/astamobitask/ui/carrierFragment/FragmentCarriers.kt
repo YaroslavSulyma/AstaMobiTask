@@ -12,14 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.astamobitask.R
-import com.example.astamobitask.ui.FragmentCarriersViewModel
-import com.example.astamobitask.ui.ItemsInterface
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.CarriersAdapter
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Data
 
 class FragmentCarriers : Fragment(), ItemsInterface {
     override fun loadFinished(response: ArrayList<Data>) {
-        viewAdapter?.update(response)
+        viewAdapter.update(response)
     }
 
     override fun loadError(error: String) {

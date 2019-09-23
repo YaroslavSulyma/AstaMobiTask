@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class ITAInternetManager() : ITAService {
+class ITAInternetManager : ITAService {
 
     override fun listCarriers(): Call<CarrierResponse> {
         return service.listCarriers()
@@ -23,13 +23,4 @@ class ITAInternetManager() : ITAService {
 
         service = retrofit.create<ITAService>(ITAService::class.java)
     }
-
-    private object Holder {
-        val INSTANCE = ITAInternetManager()
-    }
-
-    companion object {
-        val instance: ITAInternetManager by lazy { Holder.INSTANCE }
-    }
-
 }
