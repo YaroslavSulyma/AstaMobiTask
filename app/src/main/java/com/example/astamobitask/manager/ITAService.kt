@@ -5,8 +5,7 @@ import com.example.astamobitask.manager.response.DataItem
 import retrofit2.Call
 import retrofit2.http.GET
 
-
 interface ITAService {
-    @GET("http://localhost:8080/data")
+    @GET("https://api.myjson.com/bins/1fu47l/")
     fun listCarriers(): Call<CarrierResponse>
 }

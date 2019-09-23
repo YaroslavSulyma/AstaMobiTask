@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class ITAInternetManager private constructor() : ITAService {
+class ITAInternetManager() : ITAService {
 
     override fun listCarriers(): Call<CarrierResponse> {
         return service.listCarriers()
@@ -17,7 +17,7 @@ class ITAInternetManager private constructor() : ITAService {
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:8080/")
+            .baseUrl("https://api.myjson.com/bins/1fu47l/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

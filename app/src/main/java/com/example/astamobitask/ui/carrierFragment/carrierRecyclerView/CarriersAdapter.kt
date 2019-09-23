@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.astamobitask.R
 
-class CarriersAdapter(private val carrierList: ArrayList<Worker>) :
+class CarriersAdapter(private val carrierList: ArrayList<Data>) :
     RecyclerView.Adapter<CarriersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarriersViewHolder {
@@ -24,7 +24,7 @@ class CarriersAdapter(private val carrierList: ArrayList<Worker>) :
         holder.onBind(carrierList[position])
     }
 
-    fun update(response: List<Worker>) {
+    fun update(response: List<Data>) {
         carrierList.clear()
         carrierList.addAll(response)
         notifyDataSetChanged()

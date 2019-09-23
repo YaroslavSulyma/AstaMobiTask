@@ -31,7 +31,7 @@ data class Data(
     var _services: List<Services>
 ) : IData {
     override fun getOrders(orders: Int, completedOrders: Int): String {
-        return "$orders з $completedOrders"
+        return "$completedOrders з $orders"
     }
 
     override fun getAvatar(): String {
