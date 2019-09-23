@@ -1,4 +1,4 @@
-package com.example.astamobitask
+package com.example.astamobitask.ui.carrierFragment
 
 
 import android.os.Bundle
@@ -11,21 +11,39 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.astamobitask.recyclerView.CarriersAdapter
-import com.example.astamobitask.recyclerView.DummyData
+import com.example.astamobitask.R
+import com.example.astamobitask.ui.FragmentCarriersViewModel
+import com.example.astamobitask.ui.ItemsInterface
+import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.CarriersAdapter
+import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Worker
 
-class FragmentCarriers : Fragment() {
+class FragmentCarriers : Fragment(), ItemsInterface {
+    override fun loadFinished(response: ArrayList<Worker>) {
+        viewAdapter?.update(response)
+    }
+
+    override fun loadError(error: String) {
+        Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+    }
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var pullToRefresh: SwipeRefreshLayout
 
-    private var adapter = CarriersAdapter(DummyData.getData(), DummyData.getItemStatus())
+    private lateinit var viewAdapter: CarriersAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
+        val viewModel = FragmentCarriersViewModel()
+        viewModel.viewModel = this
+        viewModel.initLoad()
+
+        viewAdapter = CarriersAdapter(arrayListOf())
+
+       // recyclerView.adapter = viewAdapter
+
         return inflater.inflate(R.layout.fragment_carriers, container, false)
     }
 
@@ -42,7 +60,7 @@ class FragmentCarriers : Fragment() {
 
         pullToRefresh.setOnRefreshListener {
             Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
-            adapter.notifyDataSetChanged()
+            viewAdapter.notifyDataSetChanged()
             pullToRefresh.isRefreshing = false
         }
     }
@@ -50,8 +68,8 @@ class FragmentCarriers : Fragment() {
     override fun onStart() {
         super.onStart()
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = adapter
+        recyclerView.adapter = viewAdapter
         recyclerView.itemAnimator = DefaultItemAnimator()
-        adapter.notifyDataSetChanged()
+        viewAdapter.notifyDataSetChanged()
     }
 }

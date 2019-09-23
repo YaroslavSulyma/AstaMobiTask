@@ -1,4 +1,4 @@
-package com.example.astamobitask.recyclerView
+package com.example.astamobitask.ui.carrierFragment.carrierRecyclerView
 
 
 data class Worker(
@@ -20,15 +20,15 @@ data class Worker(
 }
 
 data class Data(
-        val _avatar: String,
-        val _name: String,
-        val _uid: String,
-        val _ratingSpeed: Double,
-        val _numberOfOrders: Int,
-        val _numberOfOrdersComplete: Int,
-        val _ratingPunctuality: Double,
-        val _workSchedule: WorkSchedule,
-        val _services: List<Services>
+    var _avatar: String,
+    var _name: String,
+    var _uid: String,
+    var _ratingSpeed: Double,
+    var _numberOfOrders: Int,
+    var _numberOfOrdersComplete: Int,
+    var _ratingPunctuality: Double,
+    var _workSchedule: WorkSchedule,
+    var _services: List<Services>
 ) : IData {
     override fun getOrders(orders: Int, completedOrders: Int): String {
         return "$orders з $completedOrders"
@@ -72,9 +72,9 @@ data class Data(
 }
 
 data class WorkSchedule(
-        val _endTime: String,
-        val _startTime: String,
-        val _dayOfWeek: List<Int>
+    var _endTime: String,
+    var _startTime: String,
+    var _dayOfWeek: List<Int>
 ) : IWorkSchedule {
     override fun getTime(startTime: String, endTime: String): String {
         return "$startTime - $endTime"
@@ -95,9 +95,9 @@ data class WorkSchedule(
 }
 
 data class Services(
-        val _id: String,
-        val _number: Int,
-        val _label: String
+    var _id: String,
+    var _number: Int,
+    var _label: String
 ) : IServices {
     override fun getId(): String {
         return _id

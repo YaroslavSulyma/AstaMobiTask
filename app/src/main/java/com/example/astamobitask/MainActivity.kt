@@ -3,6 +3,9 @@ package com.example.astamobitask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.astamobitask.ui.FragmentBuilders
+import com.example.astamobitask.ui.carrierFragment.FragmentCarriers
+import com.example.astamobitask.ui.FragmentLoaders
 import com.google.android.material.tabs.TabLayout
 
 
