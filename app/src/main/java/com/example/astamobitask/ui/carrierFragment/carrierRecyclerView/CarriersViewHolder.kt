@@ -1,5 +1,6 @@
 package com.example.astamobitask.ui.carrierFragment.carrierRecyclerView
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -32,17 +33,18 @@ class CarriersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private var expanded: Boolean = false
 
+    @SuppressLint("SetTextI18n")
     fun onBind(item: Data) {
-        name.text = item.getName()
-        Picasso.get().load(item.getAvatar()).into(avatar)
-        ratingPunctuality.text = item.getRatingPunctuality().toString()
-        ratingSpeed.text = item.getRatingSpeed().toString()
-        punctualityRating.rating = item.getRatingPunctuality().toFloat()
-        accuracyRating.rating = item.getRatingSpeed().toFloat()
-        completedOrders.text = item.getOrders()
-        workSchedule.text = item.getWorkSchedule().getTime()
+        name.text = item._name
+        Picasso.get().load(item._avatar).into(avatar)
+        ratingPunctuality.text = item._ratingPunctuality.toString()
+        ratingSpeed.text = item._ratingSpeed.toString()
+        punctualityRating.rating = item._ratingSpeed.toFloat()
+        accuracyRating.rating = item._ratingPunctuality.toFloat()
+        completedOrders.text = "${item._numberOfOrdersComplete} з ${item._numberOfOrders}"
+        workSchedule.text = "${item._workSchedule._startTime} - ${item._workSchedule._endTime}"
         val week: MutableList<String> = arrayListOf()
-        for (k in item.getWorkSchedule().getDayOfWeek().indices) {
+        for (k in item._workSchedule._dayOfWeek.indices) {
             when (k) {
                 0 -> week.add("Пн")
                 1 -> week.add("ВТ")
@@ -65,9 +67,9 @@ class CarriersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 expanded = false
             }
         }
-        priceForTime.text = item.getServices()[0].getLabel()
-        pricePerTime.text = item.getServices()[0].getNumber().toString()
-        priceForKilometer.text = item.getServices()[1].getLabel()
-        pricePerKilometer.text = item.getServices()[1].getNumber().toString()
+        priceForTime.text = item._services[0]._label
+        pricePerTime.text = item._services[0]._number.toString()
+        priceForKilometer.text = item._services[1]._label
+        pricePerKilometer.text = item._services[1]._number.toString()
     }
 }

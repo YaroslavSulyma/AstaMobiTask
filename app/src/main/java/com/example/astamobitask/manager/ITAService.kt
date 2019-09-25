@@ -8,4 +8,10 @@ import retrofit2.http.GET
 interface ITAService {
     @GET("https://api.myjson.com/bins/1fu47l/")
     fun listCarriers(): Call<CarrierResponse>
+
+    @GET("https://api.myjson.com/bins/1h6bml")
+    fun listBuilders(): Call<CarrierResponse>
+
+    @GET("https://api.myjson.com/bins/1fu47l/")
+    fun listLoaders(): Call<CarrierResponse>
 }

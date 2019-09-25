@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.carrierFragment.FragmentCarriers">
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/fragment_carriers_swipe_to_refresh"
         android:layout_width="match_parent"

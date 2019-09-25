@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.Placeholder
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.astamobitask.R
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.CarriersAdapter
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Data
+import kotlinx.android.synthetic.main.fragment_carriers.*
 
 class FragmentCarriers : Fragment(), ItemsInterface {
     override fun loadFinished(response: ArrayList<Data>) {
@@ -34,20 +37,18 @@ class FragmentCarriers : Fragment(), ItemsInterface {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModel = FragmentCarriersViewModel()
+        val viewModel =
+            ViewModelProviders.of(this)[FragmentCarriersViewModel::class.java] //FragmentCarriersViewModel()
         viewModel.viewModel = this
         viewModel.initLoad()
 
         viewAdapter = CarriersAdapter(arrayListOf())
-
-       // recyclerView.adapter = viewAdapter
 
         return inflater.inflate(R.layout.fragment_carriers, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         pullToRefresh = view.findViewById(R.id.fragment_carriers_swipe_to_refresh)
         recyclerView = view.findViewById(R.id.fragment_carriers_recycler_view)
         linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)

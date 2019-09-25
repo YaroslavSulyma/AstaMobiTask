@@ -1,8 +1,9 @@
-package com.example.astamobitask.ui.carrierFragment
+package com.example.astamobitask.ui
 
 import androidx.lifecycle.ViewModel
 import com.example.astamobitask.manager.ITAInternetManager
 import com.example.astamobitask.manager.response.CarrierResponse
+import com.example.astamobitask.ui.carrierFragment.ItemsInterface
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Data
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Services
 import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.WorkSchedule
@@ -10,18 +11,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-interface ItemsInterface {
-    fun loadFinished(response: ArrayList<Data>)
-    fun loadError(error: String)
-}
-
-class FragmentCarriersViewModel : ViewModel() {
+class FragmentLoadersViewModel : ViewModel() {
 
     private val internetManager = ITAInternetManager.instance
     var viewModel: ItemsInterface? = null
 
     fun initLoad() {
-        internetManager.listCarriers().enqueue(object : Callback<CarrierResponse> {
+        internetManager.listBuilders().enqueue(object : Callback<CarrierResponse> {
             override fun onFailure(call: Call<CarrierResponse>, t: Throwable) {
                 viewModel?.loadError(t.message!!)
             }

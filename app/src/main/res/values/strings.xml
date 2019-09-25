@@ -6,4 +6,6 @@
     <string name="caution">Акуратність</string>
     <string name="punctuality">Пунктуальність</string>
     <string name="button_order">Замовити</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_swap">Swap</string>
 </resources>
