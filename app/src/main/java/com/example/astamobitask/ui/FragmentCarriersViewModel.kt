@@ -1,11 +1,11 @@
-package com.example.astamobitask.ui.carrierFragment
+package com.example.astamobitask.ui
 
 import androidx.lifecycle.ViewModel
 import com.example.astamobitask.manager.ITAInternetManager
-import com.example.astamobitask.manager.response.CarrierResponse
-import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Data
-import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Services
-import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.WorkSchedule
+import com.example.astamobitask.manager.response.WorkerResponse
+import com.example.astamobitask.ui.carrierFragment.recycler.Data
+import com.example.astamobitask.ui.carrierFragment.recycler.Services
+import com.example.astamobitask.ui.carrierFragment.recycler.WorkSchedule
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,14 +21,14 @@ class FragmentCarriersViewModel : ViewModel() {
     var viewModel: ItemsInterface? = null
 
     fun initLoad() {
-        internetManager.listCarriers().enqueue(object : Callback<CarrierResponse> {
-            override fun onFailure(call: Call<CarrierResponse>, t: Throwable) {
+        internetManager.listCarriers().enqueue(object : Callback<WorkerResponse> {
+            override fun onFailure(call: Call<WorkerResponse>, t: Throwable) {
                 viewModel?.loadError(t.message!!)
             }
 
             override fun onResponse(
-                call: Call<CarrierResponse>,
-                response: Response<CarrierResponse>
+                call: Call<WorkerResponse>,
+                response: Response<WorkerResponse>
             ) {
                 val carrierList = ArrayList<Data>()
                 response.body()?.data?.forEach {

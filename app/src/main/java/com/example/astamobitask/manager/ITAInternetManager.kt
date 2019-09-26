@@ -1,21 +1,21 @@
 package com.example.astamobitask.manager
 
-import com.example.astamobitask.manager.response.CarrierResponse
+import com.example.astamobitask.manager.response.WorkerResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
 class ITAInternetManager private constructor() : ITAService {
-    override fun listBuilders(): Call<CarrierResponse> {
+    override fun listBuilders(): Call<WorkerResponse> {
         return service.listBuilders()
     }
 
-    override fun listLoaders(): Call<CarrierResponse> {
+    override fun listLoaders(): Call<WorkerResponse> {
         return service.listLoaders()
     }
 
-    override fun listCarriers(): Call<CarrierResponse> {
+    override fun listCarriers(): Call<WorkerResponse> {
         return service.listCarriers()
     }
 

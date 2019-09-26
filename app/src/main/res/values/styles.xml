@@ -18,4 +18,9 @@
 
     </style>
 
+    <style name="RatingBar" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorWhite</item>
+        <item name="android:color">@color/colorAccent</item>
+    </style>
 </resources>

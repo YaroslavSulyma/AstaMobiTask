@@ -1,6 +1,5 @@
 package com.example.astamobitask
 
-import android.R.menu
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.astamobitask.ui.FragmentBuilders
 import com.example.astamobitask.ui.FragmentLoaders
-import com.example.astamobitask.ui.carrierFragment.FragmentCarriers
+import com.example.astamobitask.ui.FragmentCarriers
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         pagerAdapter.addFragment(FragmentBuilders(), "Будівельники")
         viewPager.adapter = pagerAdapter
         tabs.setupWithViewPager(viewPager)
-        toolbar.title = "Головна"
+        toolbar.title = getString(R.string.toolbar_title)
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 

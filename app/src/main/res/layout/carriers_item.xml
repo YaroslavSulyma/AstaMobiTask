@@ -17,10 +17,10 @@
 
         <Button
             android:id="@+id/button_order"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@drawable/button"
             android:text="@string/button_order"
             android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="@+id/clickable_constraint_layout"
@@ -50,24 +50,26 @@
 
             <RatingBar
                 android:id="@+id/accuracy_rating"
-                style="@style/Widget.AppCompat.RatingBar.Small"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:isIndicator="true"
                 android:numStars="5"
+                android:progressTint="@color/colorLightGreen"
                 android:stepSize="0.5"
                 app:layout_constraintStart_toStartOf="@+id/text_view_accuracy"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_accuracy" />
 
             <RatingBar
                 android:id="@+id/punctuality_rating"
-                style="@style/Widget.AppCompat.RatingBar.Small"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:isIndicator="true"
                 android:numStars="5"
+                android:progressTint="@color/colorLightGreen"
                 android:stepSize="0.5"
                 app:layout_constraintStart_toStartOf="@+id/text_view_punctuality"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_punctuality" />

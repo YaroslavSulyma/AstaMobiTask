@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.astamobitask.R
-import com.example.astamobitask.ui.carrierFragment.ItemsInterface
-import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.CarriersAdapter
-import com.example.astamobitask.ui.carrierFragment.carrierRecyclerView.Data
+import com.example.astamobitask.ui.carrierFragment.recycler.Adapter
+import com.example.astamobitask.ui.carrierFragment.recycler.Data
+import io.supercharge.shimmerlayout.ShimmerLayout
 
 class FragmentBuilders : Fragment(), ItemsInterface {
     override fun loadFinished(response: ArrayList<Data>) {
+        shimmerLayout.startShimmerAnimation()
         viewAdapter.update(response)
+        shimmerLayout.stopShimmerAnimation()
+        shimmerLayout.visibility = View.GONE
     }
 
     override fun loadError(error: String) {
@@ -28,8 +31,9 @@ class FragmentBuilders : Fragment(), ItemsInterface {
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var pullToRefresh: SwipeRefreshLayout
+    private lateinit var viewAdapter: Adapter
+    private lateinit var shimmerLayout: ShimmerLayout
 
-    private lateinit var viewAdapter: CarriersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +44,7 @@ class FragmentBuilders : Fragment(), ItemsInterface {
         viewModel.viewModel = this
         viewModel.initLoad()
 
-        viewAdapter = CarriersAdapter(arrayListOf())
+        viewAdapter = Adapter(arrayListOf())
 
         return inflater.inflate(R.layout.fragment_builders, container, false)
     }
@@ -51,6 +55,7 @@ class FragmentBuilders : Fragment(), ItemsInterface {
         pullToRefresh = view.findViewById(R.id.fragment_builders_swipe_to_refresh)
         recyclerView = view.findViewById(R.id.fragment_builders_recycler_view)
         linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        shimmerLayout = view.findViewById(R.id.place_holder) as ShimmerLayout
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -3,7 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.carrierFragment.FragmentCarriers">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.FragmentCarriers">
+
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:id="@+id/place_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shimmer_animation_duration="1200">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_place_holder" />
+
+            <include layout="@layout/item_place_holder" />
+
+            <include layout="@layout/item_place_holder" />
+
+            <include layout="@layout/item_place_holder" />
+
+            <include layout="@layout/item_place_holder" />
+
+            <include layout="@layout/item_place_holder" />
+
+            <include layout="@layout/item_place_holder" />
+
+        </LinearLayout>
+
+    </io.supercharge.shimmerlayout.ShimmerLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/fragment_builders_swipe_to_refresh"
