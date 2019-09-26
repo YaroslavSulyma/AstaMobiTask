@@ -40,7 +40,7 @@ class FragmentCarriers : Fragment(), ItemsInterface {
         savedInstanceState: Bundle?
     ): View? {
         val viewModel =
-            ViewModelProviders.of(this)[FragmentCarriersViewModel::class.java] //FragmentCarriersViewModel()
+            ViewModelProviders.of(this)[FragmentCarriersViewModel::class.java]
         viewModel.viewModel = this
         viewModel.initLoad()
 
@@ -61,7 +61,7 @@ class FragmentCarriers : Fragment(), ItemsInterface {
         super.onActivityCreated(savedInstanceState)
 
         pullToRefresh.setOnRefreshListener {
-            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,getString(R.string.refreshed), Toast.LENGTH_SHORT).show()
             viewAdapter.notifyDataSetChanged()
             pullToRefresh.isRefreshing = false
         }

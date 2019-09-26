@@ -9,4 +9,5 @@
     <string name="action_filter">Filter</string>
     <string name="action_swap">Swap</string>
     <string name="toolbar_title">Головна</string>
+    <string name="refreshed">Refreshed</string>
 </resources>
